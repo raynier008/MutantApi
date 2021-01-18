@@ -1,7 +1,9 @@
 package com.mutantapi.mutantapi;
 
 import com.mutantapi.mutantapi.model.Mutant;
+import com.mutantapi.mutantapi.model.Stats;
 import com.mutantapi.mutantapi.repository.MutantRepository;
+import com.mutantapi.mutantapi.repository.StatsRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +19,7 @@ public class MutantapiApplication {
 	}
 
 	@Bean
-	CommandLineRunner run(MutantRepository mutantRepository) {
+	CommandLineRunner run(MutantRepository mutantRepository, StatsRepository statsRepository) {
 		return args -> {
 			mutantRepository.deleteAll().thenMany(Flux
 					.just(new Mutant(new String[] { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG" }),
@@ -25,6 +27,9 @@ public class MutantapiApplication {
 					.flatMap(mutantRepository::save)).thenMany(mutantRepository.findAll())
 					.subscribe(System.out::println);
 
+			statsRepository.deleteAll()
+					.thenMany(Flux.just(new Stats("TestApiStats", 2, 1, 0.5f)).flatMap(statsRepository::save))
+					.thenMany(statsRepository.findAll()).subscribe(System.out::println);
 		};
 	}
 

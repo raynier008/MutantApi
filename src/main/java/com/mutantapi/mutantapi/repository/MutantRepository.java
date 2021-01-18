@@ -3,7 +3,11 @@ package com.mutantapi.mutantapi.repository;
 import com.mutantapi.mutantapi.model.Mutant;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.stereotype.Repository;
 
+import reactor.core.publisher.Mono;
+
+@Repository
 public interface MutantRepository extends ReactiveMongoRepository<Mutant, String> {
-    Mutant findByDna(String[] Dna);
+    Mono<Mutant> findByDna(String[] Dna);
 }
