@@ -2,9 +2,11 @@ package com.mutantapi.mutantapi.controller;
 
 import com.mutantapi.mutantapi.repository.MutantRepository;
 import com.mutantapi.mutantapi.model.Mutant;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,13 @@ public class MutantController {
 
     @Autowired
     private MutantRepository mutantRepository;
+    private StatsController statsController;
+
+    public MutantController(StatsController _statsController) {
+        this.statsController = _statsController;
+    }
+
+    // #region Public
 
     @GetMapping("/")
     public Flux<Mutant> ListMutants() {
@@ -33,15 +42,24 @@ public class MutantController {
     }
 
     @PostMapping("/")
-    public Mono<Mutant> ValidateISMutant(@RequestBody Mutant isMutant) {
-
-        if (isMutant(isMutant)) {
-            SaveMutant(isMutant);
+    public Mono<ResponseEntity<Mutant>> ValidateISMutant(@RequestBody Mutant isMutant) {
+        // VALIDAMOS SI ES MUTANTE
+        boolean mutant = isMutant(isMutant);
+        if (mutant) {
+            Mutant mut = mutantRepository.findByDna(isMutant.getDna()).block();
+            if (mut == null) {
+                mutantRepository.save(isMutant).map(savedMutant -> ResponseEntity.ok(savedMutant)).subscribe();
+            }
         }
-
-        return Mono.just(isMutant);
+        // ACTUALIZAMOS
+        statsController.saveStats(mutant);
+        // DEVOLVEMOS!
+        return Mono.just(new ResponseEntity<>(mutant ? HttpStatus.OK : HttpStatus.FORBIDDEN));
     }
 
+    // #endregion
+
+    // #region Private
     private boolean isMutant(Mutant mutant) {
         // OBTENEMOS EL DNA
         for (String secuencia : mutant.getDna()) {
@@ -68,17 +86,5 @@ public class MutantController {
         }
         return false;
     }
-
-    private boolean ExistsMutant(Mutant mutant) {
-
-        String[] dd = mutant.getDna();
-        Mutant mut = mutantRepository.findByDna(mutant.getDna());
-        return mut != null ? true : false;
-    }
-
-    private void SaveMutant(Mutant mutant) {
-        if (!ExistsMutant(mutant)) {
-            mutantRepository.save(mutant).map(savedMutant -> ResponseEntity.ok(savedMutant));
-        }
-    }
+    // #endregion
 }

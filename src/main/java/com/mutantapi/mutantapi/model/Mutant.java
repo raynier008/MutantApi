@@ -8,14 +8,14 @@ public class Mutant {
     @Id
     private String id;
 
-    private String[] Dna;
+    private String[] dna;
 
     public Mutant() {
 
     }
 
-    public Mutant(String[] Dna) {
-        this.Dna = Dna;
+    public Mutant(String[] dna2) {
+        this.dna = dna2;
     }
 
     public String getId() {
@@ -27,11 +27,11 @@ public class Mutant {
     }
 
     public String[] getDna() {
-        return this.Dna;
+        return this.dna;
     }
 
-    public void setDna(String[] Dna2) {
-        this.Dna = Dna2;
+    public void setDna(String[] dna2) {
+        this.dna = dna2;
     }
 
 }
