@@ -71,7 +71,7 @@ Proyecto :
 
 ## Inspiration
 
-Surge cómo propuesta inicial desde mi perspectiva ya que siempre trabajé con lenguaje .Net, logré algunas sus debilidades y fortalezas para ambos lenguajes (java y net) ya que sólo estoy arañando sobre la tecnología java, adicional para el guardado de información me incliné por una base de dato no relacional el cual fue mi primera experiencia.
+Surge cómo propuesta inicial usando Java, desde mi perspectiva muy personal siempre trabajé con lenguaje .Net, logré identificar algunas sus debilidades y fortalezas para ambos lenguajes (java y net) ya que sólo estoy arañando sobre la tecnología java, adicional para el guardado de información me incliné por una base de dato no relacional el cual también fue mi primera experiencia.
 
 ## Contact
 
