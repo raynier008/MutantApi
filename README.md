@@ -33,16 +33,17 @@ Mi primer proyecto es una pequeña Api utilizando Java, utilicé como framework 
 
 Clonar el repositorio, verificar que el puerto no esté ocupado para cuando trabajamos a nivel local o lo cambiamos. Respecto a la BD, desde el momento de compilar la solución realizamos una carga inicial sobre las dos entidades a utilizar.
 
-Describe how to install / setup your local environement / add link to demo version.
-
 ## Code Examples
 
 Show examples of usage:
-`put-your-code-here`
+
+- http://localhost:8098/mutant/
+- - {"dna":["ATGCGA","CAGTGC","TTATGT","AGAAGG","CDDDTA","TCACTG"]
+    }
+
+- http://localhost:8098/stats/
 
 ## Features
-
-List of features ready and TODOs for future development
 
 - Feature 1 : servicio “/mutant/” en donde se pueda detectar si un humano es
   mutante enviando la secuencia de ADN mediante un HTTP POST.
