@@ -31,6 +31,8 @@ Mi primer proyecto es una pequeña Api utilizando Java, utilicé como framework 
 
 ## Setup
 
+Se necesita tener previamente instalado una versión de MongoDB local, por seguridad no está agregada la uri publica utilizada.
+
 Clonar el repositorio, verificar que el puerto no esté ocupado para cuando trabajamos a nivel local o lo cambiamos. Respecto a la BD, desde el momento de compilar la solución realizamos una carga inicial sobre las dos entidades a utilizar.
 
 ## Code Examples
@@ -71,7 +73,7 @@ Proyecto :
 
 ## Inspiration
 
-Surge cómo propuesta inicial usando Java, desde mi perspectiva muy personal siempre trabajé con lenguaje .Net, logré identificar algunas sus debilidades y fortalezas para ambos lenguajes (java y net) ya que sólo estoy arañando sobre la tecnología java, adicional para el guardado de información me incliné por una base de dato no relacional el cual también fue mi primera experiencia.
+Surge cómo propuesta inicial usando Java, desde mi perspectiva muy personal siempre trabajé con lenguaje .Net, logré identificar algunas de sus debilidades y fortalezas para ambos lenguajes (java y net) ya que sólo estoy arañando sobre la tecnología java, adicional para el guardado de información me incliné por una base de dato no relacional el cual también fue mi primera experiencia.
 
 ## Contact
 
